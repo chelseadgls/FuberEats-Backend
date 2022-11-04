@@ -1,7 +1,9 @@
 import axios from "axios";
 import fs from "fs";
 import Product from "../models/Product.js";
+import userInfo from "../models/userInfo.js";
 import db from "../db/connection.js";
+import userData from "./userData.json" assert { type: "json" }
 
 // const PRODUCT_SEED_COUNT = 20;
 let count = 0;
@@ -32,11 +34,11 @@ const writeProductData = async () => {
   try {
     await getProducts();
     await fs.writeFile(
-      "./seed/productData.json",
+      "./productData.json",
       JSON.stringify(allProducts),
       (err) => {
         if (err) throw err;
-        console.log("Data has been written to file successfully.");
+        console.log("Product Data has been written to file successfully.");
       }
     );
   } catch (error) {
@@ -44,11 +46,13 @@ const writeProductData = async () => {
   }
 };
 
+
 const insertData = async () => {
   try {
     await getProducts();
     await db.dropDatabase();
     await Product.create(allProducts);
+    await userInfo.create(userData)
     await db.close();
   } catch (err) {
     console.log(err);
