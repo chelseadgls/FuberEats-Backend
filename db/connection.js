@@ -1,23 +1,26 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import chalk from "chalk";
-//A tool to help view server data
 
-mongoose.set("returnOriginal", false)
+const URL =
+  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/tests-store";
 
-const url = process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/FUBERDATA'
+let mongooseConfig = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+};
 
-mongoose
-  .connect(url)
-  .catch((error) => {
-    console.error("There's an error ", error)
-  })
+mongoose.set("returnOriginal", false);
+
+mongoose.connect(URL, mongooseConfig).catch((err) => {
+  console.log(`Error connection go MongoDB: ${err.message}`);
+});
 
 mongoose.connection.on("disconnected", () => {
-  console.log(chalk.bold("Disconnected from MongoDB"))
-})
+  console.log(chalk.bold("Disconnected from MongoDB!"));
+});
 
-mongoose.connection.on("error", (error) => {
-  console.log(chalk.red("Connection error", error))
-})
+mongoose.connection.on("error", (err) => {
+  console.log(chalk.red(`MongoDB connection error: ${err}`));
+});
 
-export default mongoose.connection
+export default mongoose.connection;
