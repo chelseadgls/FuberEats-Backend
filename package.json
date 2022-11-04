@@ -31,5 +31,6 @@
   "bugs": {
     "url": "https://github.com/chelseadgls/FuberEats-Backend/issues"
   },
-  "homepage": "https://github.com/chelseadgls/FuberEats-Backend#readme"
+  "homepage": "https://github.com/chelseadgls/FuberEats-Backend#readme",
+  "keywords": []
 }

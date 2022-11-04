@@ -1,4 +1,4 @@
-import userInfo from "../models/userInfo";
+import userInfo from "../models/userInfo.js";
 
 export const getUsers = async (req, res) => {
   try {
