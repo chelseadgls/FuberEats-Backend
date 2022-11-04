@@ -1,13 +1,10 @@
-import { Router } from "express"
-import storeRoutes from "./storeRoutes.js"
+import { Router } from "express";
+import productRoutes from "./products.js";
 
-const router = Router()
+const router = Router();
 
-router.get("/", (request, response) => {
-  response.json({
-  })
-})
+router.get("/", (req, res) => res.send("This is the api root!"));
 
-router.use("/storeData", storeRoutes)
+router.use("/products", productRoutes);
 
-export default router
+export default router;
