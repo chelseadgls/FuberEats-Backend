@@ -10,7 +10,7 @@ let allProducts = {};
 const getProducts = async () => {
   count++;
   if (count > 1) return;
-  let response = await axios(`https://ig-food-menus.herokuapp.com/best-foods`);
+  let response = await axios(`https://ig-food-menus.herokuapp.com/our-foods`);
   let productData = response.data;
   let structuredProducts = productData.map(
     ({ img, name, dsc, price, rate, country }) => {
