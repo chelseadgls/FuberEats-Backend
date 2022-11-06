@@ -37,11 +37,11 @@ fork, clone, create a new feature, and submit a pull request!
 
 - https://ig-food-menus.herokuapp.com
 
-## API DOCUMENTATION IN POSTMAN
+## POSTMAN API DOCUMENTATION
 
-<!-- https://documenter.getpostman.com/view/23919886/2s84DhX6oc -->
+https://documenter.getpostman.com/view/23919886/2s8YYJqiAx
 
-## API DOCUMENTATION
+## README API DOCUMENTATION
 
 #### main crud routes / create - read - update - delete
 
