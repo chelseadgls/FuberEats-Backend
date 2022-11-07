@@ -1,7 +1,7 @@
 [{
-  "hash": "1234",
+  "hash": "TestingUser",
   "cartItemsByID" : 
-  ["123",
-  "1234",
-  "1234"]
+  ["Test",
+  "Test",
+  "Test"]
 }]
