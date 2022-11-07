@@ -26,10 +26,11 @@
     "type": "git",
     "url": "git+https://github.com/chelseadgls/FuberEats-Backend.git"
   },
-  "author": "Nichole, Chelsea, Akeel, Chris",
+  "author": "Nichole, Chelsea, Akeel, Chris, Tony",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chelseadgls/FuberEats-Backend/issues"
   },
-  "homepage": "https://github.com/chelseadgls/FuberEats-Backend#readme"
+  "homepage": "https://github.com/chelseadgls/FuberEats-Backend#readme",
+  "keywords": []
 }

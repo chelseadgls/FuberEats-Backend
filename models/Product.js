@@ -12,8 +12,4 @@ let Product = new Schema({
   country: { type: String },
 });
 
-// let User = new Schema({
-
-// });
-
 export default mongoose.model("products", Product);

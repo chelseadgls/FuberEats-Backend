@@ -10,6 +10,17 @@ export const getProducts = async (req, res) => {
   }
 };
 
+export const createProduct = async (req, res) => {
+  try {
+    const product = new Product(req.body);
+    await product.save();
+    res.status(201).json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 export const getProductsLimit = async (req, res) => {
   try {
     const products = await Product.find().limit(req.params.num);
@@ -56,17 +67,6 @@ export const getProductByName = async (req, res) => {
       return res.json(product);
     }
     res.status(404).json({ message: "product not found!" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: error.message });
-  }
-};
-
-export const createProduct = async (req, res) => {
-  try {
-    const product = new Product(req.body);
-    await product.save();
-    res.status(201).json(product);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
