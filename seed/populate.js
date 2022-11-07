@@ -4,13 +4,10 @@ import Product from "../models/Product.js";
 import BbqProduct from "../models/BbqProduct.js";
 import db from "../db/connection.js";
 
-// const PRODUCT_SEED_COUNT = 20;
 let count = 0;
 let allProducts = {};
 
 const getProducts = async () => {
-  // count++;
-  // if (count > 1) return;
   let response = await axios(`https://ig-food-menus.herokuapp.com/our-foods`);
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -31,7 +28,6 @@ const getProducts = async () => {
 
 const writeProductData = async () => {
   try {
-    // await getProducts();
     await fs.writeFile(
       "./seed/productData.json",
       JSON.stringify(allProducts),
@@ -61,8 +57,6 @@ const insertData = async () => {
 let bbq_products = {};
 
 const getBbqProducts = async () => {
-  // count++;
-  // if (count > 1) return;
   let response = await axios(`https://ig-food-menus.herokuapp.com/bbqs`);
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -83,7 +77,6 @@ const getBbqProducts = async () => {
 
 const writeBbqData = async () => {
   try {
-    // await getProducts();
     await fs.writeFile(
       "./seed/bbqData.json",
       JSON.stringify(bbq_products),
