@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import chalk from "chalk";
 
 const URL =
-  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/tests-store";
+  process.env.MONGO_URL || "mongodb://127.0.0.1:27017/fubar-eats-store";
 
 let mongooseConfig = {
   useNewUrlParser: true,
