@@ -6,7 +6,7 @@ router.get("/", controllers.getUsers);
 
 router.post("/", controllers.createUser);
 
-router.get("/:id", controllers.getUserByHash);
+router.get("/:id", controllers.getUsersbyId);
 
 router.put("/:id", controllers.updateUser);
 
