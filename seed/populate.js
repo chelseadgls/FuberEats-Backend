@@ -35,10 +35,9 @@ const writeProductData = async () => {
       "./productData.json",
       JSON.stringify(allProducts),
       (err) => {
+        console.log(allProducts);
         if (err) throw err;
-        console.log(
-          "all product Data has been written to products file successfully."
-        );
+        console.log("Product Data has been written to file successfully.");
       }
     );
   } catch (error) {
@@ -51,7 +50,7 @@ const insertData = async () => {
     await getProducts();
     await db.dropDatabase();
     await Product.create(allProducts);
-    await userInfo.create(userData);
+    // await userInfo.create(userData);
     await db.close();
   } catch (err) {
     console.log(err);
@@ -63,6 +62,8 @@ const insertData = async () => {
 let bbq_products = {};
 
 const getBbqProducts = async () => {
+  // count++;
+  // if (count > 1) return;
   let response = await axios(`https://ig-food-menus.herokuapp.com/bbqs`);
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -83,6 +84,7 @@ const getBbqProducts = async () => {
 
 const writeBbqData = async () => {
   try {
+    // await getProducts();
     await fs.writeFile(
       "./seed/bbqData.json",
       JSON.stringify(bbq_products),
@@ -112,6 +114,8 @@ const insertBbq = async () => {
 let drinks_products = {};
 
 const getDrinksProducts = async () => {
+  // count++;
+  // if (count > 1) return;
   let response = await axios(`https://ig-food-menus.herokuapp.com/drinks`);
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -132,6 +136,7 @@ const getDrinksProducts = async () => {
 
 const writeDrinksData = async () => {
   try {
+    // await getProducts();
     await fs.writeFile(
       "./seed/drinksData.json",
       JSON.stringify(drinks_products),
@@ -158,16 +163,6 @@ const insertDrinks = async () => {
   }
 };
 
-insertData()
-  .then(() => {
-    insertBbq();
-  })
-  .then(() => {
-    insertDrinks();
-  })
-  .catch((err) => {
-    console.error(err);
-  })
-  .finally(() => {
-    db.close();
-  });
+insertData();
+// insertBbq();
+// insertDrinks();
