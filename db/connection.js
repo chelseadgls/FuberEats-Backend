@@ -11,6 +11,10 @@ let mongooseConfig = {
 
 mongoose.set("returnOriginal", false);
 
+// mongoose.connection.on("connected", () => {
+//   console.log(chalk.bold("connected from MongoDB!"));
+// });
+
 mongoose.connect(URL, mongooseConfig).catch((err) => {
   console.log(`Error connection go MongoDB: ${err.message}`);
 });
