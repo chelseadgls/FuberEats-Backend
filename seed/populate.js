@@ -51,7 +51,7 @@ const writeProductData = async () => {
 const insertData = async () => {
   try {
     await getProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await Product.create(allProducts);
     await userInfo.create(userData);
   } catch (err) {
@@ -100,7 +100,7 @@ const writeBbqData = async () => {
 const insertBbq = async () => {
   try {
     await getBbqProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await BbqProduct.create(bbq_products);
   } catch (err) {
     console.log(err);
@@ -148,7 +148,7 @@ const writeDrinksData = async () => {
 const insertDrinks = async () => {
   try {
     await getDrinksProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await Drinks.create(drinks_products);
   } catch (err) {
     console.log(err);
@@ -198,7 +198,7 @@ const writeBurgersData = async () => {
 const insertBurgers = async () => {
   try {
     await getBurgersProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await BurgerProduct.create(burgers_products);
   } catch (err) {
     console.log(err);
@@ -248,7 +248,7 @@ const writePizzasData = async () => {
 const insertPizzas = async () => {
   try {
     await getPizzasProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await PizzasProduct.create(pizzas_products);
   } catch (err) {
     console.log(err);
@@ -298,7 +298,7 @@ const writeDessertsData = async () => {
 const insertDesserts = async () => {
   try {
     await getDessertsProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await DessertProduct.create(desserts_products);
   } catch (err) {
     console.log(err);
@@ -348,7 +348,7 @@ const writeSandwichesData = async () => {
 const insertSandwiches = async () => {
   try {
     await getSandwichesProducts();
-    await db.dropDatabase();
+    // await db.dropDatabase();
     await SandwichProduct.create(sandwiches_products);
   } catch (err) {
     console.log(err);
@@ -357,6 +357,7 @@ const insertSandwiches = async () => {
 
 // main function
 const insertSeedData = async () => {
+  await db.dropDatabase();
   await insertBbq();
   await insertData();
   await insertDrinks();
