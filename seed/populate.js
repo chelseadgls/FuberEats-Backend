@@ -1,20 +1,27 @@
 import axios from "axios";
 import fs from "fs";
+import db from "../db/connection.js";
 import Product from "../models/Product.js";
 import Drinks from "../models/Drinks.js";
 import userInfo from "../models/userInfo.js";
 import BbqProduct from "../models/BbqProduct.js";
 import BurgerProduct from "../models/Burger.js";
 import PizzasProduct from "../models/Pizza.js";
-import DessertProduct from "../models/Pizza.js";
+import DessertProduct from "../models/Dessert.js";
 import SandwichProduct from "../models/Sandwich.js";
 
-import db from "../db/connection.js";
 import userData from "./userData.json" assert { type: "json" };
+import dessertData from "./dessertsData.json" assert { type: "json" };
 
 let allProducts = {};
+let desserts_products = {};
+let bbq_products = {};
+let drinks_products = {};
+let burgers_products = {};
+let pizzas_products = {};
+let sandwiches_products = {};
 
-const getProducts = async () => {
+async function getProducts() {
   let response = await axios("https://ig-food-menus.herokuapp.com/our-foods");
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -31,9 +38,9 @@ const getProducts = async () => {
   );
   allProducts = structuredProducts;
   writeProductData();
-};
+}
 
-const writeProductData = async () => {
+async function writeProductData() {
   try {
     await fs.writeFile(
       "./seed/productData.json",
@@ -46,9 +53,9 @@ const writeProductData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertData = async () => {
+async function insertData() {
   try {
     await getProducts();
     // await db.dropDatabase();
@@ -57,13 +64,11 @@ const insertData = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // BBQ PRODUCTS -----------------
 
-let bbq_products = {};
-
-const getBbqProducts = async () => {
+async function getBbqProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/bbqs`);
   let productData = response.data;
   let structuredProducts = productData.map(
@@ -80,9 +85,9 @@ const getBbqProducts = async () => {
   );
   bbq_products = structuredProducts;
   writeBbqData();
-};
+}
 
-const writeBbqData = async () => {
+async function writeBbqData() {
   try {
     await fs.writeFile(
       "./seed/bbqData.json",
@@ -95,9 +100,9 @@ const writeBbqData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertBbq = async () => {
+async function insertBbq() {
   try {
     await getBbqProducts();
     // await db.dropDatabase();
@@ -105,13 +110,11 @@ const insertBbq = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // DRINKS
 
-let drinks_products = {};
-
-const getDrinksProducts = async () => {
+async function getDrinksProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/drinks`);
   let drinksData = response.data;
   let structuredDrinks = drinksData.map(
@@ -128,9 +131,9 @@ const getDrinksProducts = async () => {
   );
   drinks_products = structuredDrinks;
   writeDrinksData();
-};
+}
 
-const writeDrinksData = async () => {
+async function writeDrinksData() {
   try {
     await fs.writeFile(
       "./seed/drinksData.json",
@@ -143,9 +146,9 @@ const writeDrinksData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertDrinks = async () => {
+async function insertDrinks() {
   try {
     await getDrinksProducts();
     // await db.dropDatabase();
@@ -153,13 +156,11 @@ const insertDrinks = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // BURGERS
 
-let burgers_products = {};
-
-const getBurgersProducts = async () => {
+async function getBurgersProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/burgers`);
   let burgersData = response.data;
   let structuredBurgers = burgersData.map(
@@ -176,9 +177,9 @@ const getBurgersProducts = async () => {
   );
   burgers_products = structuredBurgers;
   writeBurgersData();
-};
+}
 
-const writeBurgersData = async () => {
+async function writeBurgersData() {
   try {
     await fs.writeFile(
       "./seed/burgersData.json",
@@ -193,9 +194,9 @@ const writeBurgersData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertBurgers = async () => {
+async function insertBurgers() {
   try {
     await getBurgersProducts();
     // await db.dropDatabase();
@@ -203,13 +204,11 @@ const insertBurgers = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // PIZZAS
 
-let pizzas_products = {};
-
-const getPizzasProducts = async () => {
+async function getPizzasProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/pizzas`);
   let pizzasData = response.data;
   let structuredPizzas = pizzasData.map(
@@ -226,9 +225,9 @@ const getPizzasProducts = async () => {
   );
   pizzas_products = structuredPizzas;
   writePizzasData();
-};
+}
 
-const writePizzasData = async () => {
+async function writePizzasData() {
   try {
     await fs.writeFile(
       "./seed/pizzasData.json",
@@ -243,9 +242,9 @@ const writePizzasData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertPizzas = async () => {
+async function insertPizzas() {
   try {
     await getPizzasProducts();
     // await db.dropDatabase();
@@ -253,13 +252,10 @@ const insertPizzas = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // DESSERTS
-
-let desserts_products = {};
-
-const getDessertsProducts = async () => {
+async function getDessertsProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/desserts`);
   let dessertsData = response.data;
   let structuredDesserts = dessertsData.map(
@@ -276,9 +272,9 @@ const getDessertsProducts = async () => {
   );
   desserts_products = structuredDesserts;
   writeDessertsData();
-};
+}
 
-const writeDessertsData = async () => {
+async function writeDessertsData() {
   try {
     await fs.writeFile(
       "./seed/dessertsData.json",
@@ -293,23 +289,21 @@ const writeDessertsData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertDesserts = async () => {
+async function insertDesserts() {
   try {
     await getDessertsProducts();
     // await db.dropDatabase();
-    await DessertProduct.create(desserts_products);
+    await DessertProduct.create(dessertData);
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // SANDWICHES
 
-let sandwiches_products = {};
-
-const getSandwichesProducts = async () => {
+async function getSandwichesProducts() {
   let response = await axios(`https://ig-food-menus.herokuapp.com/sandwiches`);
   let sandwichesData = response.data;
   let structuredSandwiches = sandwichesData.map(
@@ -326,9 +320,9 @@ const getSandwichesProducts = async () => {
   );
   sandwiches_products = structuredSandwiches;
   writeSandwichesData();
-};
+}
 
-const writeSandwichesData = async () => {
+async function writeSandwichesData() {
   try {
     await fs.writeFile(
       "./seed/sandwichesData.json",
@@ -343,9 +337,9 @@ const writeSandwichesData = async () => {
   } catch (error) {
     console.error(error);
   }
-};
+}
 
-const insertSandwiches = async () => {
+async function insertSandwiches() {
   try {
     await getSandwichesProducts();
     // await db.dropDatabase();
@@ -353,19 +347,19 @@ const insertSandwiches = async () => {
   } catch (err) {
     console.log(err);
   }
-};
+}
 
 // main function
-const insertSeedData = async () => {
+async function insertSeedData() {
   await db.dropDatabase();
+  await insertDesserts();
   await insertBbq();
   await insertData();
   await insertDrinks();
   await insertBurgers();
   await insertPizzas();
-  await insertDesserts();
   await insertSandwiches();
   await db.close();
-};
+}
 
 insertSeedData();
