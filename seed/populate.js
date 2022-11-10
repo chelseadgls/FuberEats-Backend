@@ -9,10 +9,11 @@ import BurgerProduct from "../models/Burger.js";
 import PizzasProduct from "../models/Pizza.js";
 import DessertProduct from "../models/Dessert.js";
 import SandwichProduct from "../models/Sandwich.js";
+// import AllProducts from "../models/AllProduct.js";
 
 import userData from "./userData.json" assert { type: "json" };
 import dessertData from "./dessertsData.json" assert { type: "json" };
-
+let allProductsCat = {};
 let allProducts = {};
 let desserts_products = {};
 let bbq_products = {};
@@ -349,9 +350,60 @@ async function insertSandwiches() {
   }
 }
 
+// ALL
+
+async function getAllProducts() {
+  let response = await axios(`http://localhost:3003/allProducts`);
+  let allProductData = response.data;
+  console.log(allProductData);
+  let structuredAllProducts = allProductData.map(
+    ({ bbq, burgers, desserts, drinks, pizzas, sandwiches }) => {
+      return {
+        bbq,
+        burgers,
+        desserts,
+        drinks,
+        pizzas,
+        sandwiches,
+      };
+    }
+  );
+  allProductsCat = structuredAllProducts;
+  writeAllProductData();
+}
+
+async function writeAllProductData() {
+  try {
+    await fs.writeFile(
+      "./seed/allProducts.json",
+      JSON.stringify(allProductsCat),
+      (err) => {
+        if (err) throw err;
+        console.log(
+          "all Products Data has been written to allproducts file successfully."
+        );
+      }
+    );
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+async function insertAllProducts() {
+  try {
+    await getAllProducts();
+    // console.log(allProductsCat);
+    // await db.dropDatabase();
+    // await AllProducts.create(allProductsCat);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 // main function
 async function insertSeedData() {
   await db.dropDatabase();
+  // await insertAllProducts();
   await insertDesserts();
   await insertBbq();
   await insertData();
