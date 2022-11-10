@@ -53,6 +53,15 @@ https://documenter.getpostman.com/view/23919886/2s8YYJqiAx
 - https://fubereats-backend-production.up.railway.app/products/name/:name
 - https://fubereats-backend-production.up.railway.app/products/limit/:num
 
+#### Category Routes
+
+- /bbq
+- /burgers
+- /desserts
+- /drinks
+- /pizzas
+- /sandwiches
+
 - **GET ALL PRODUCTS endpoint: GET /products**
 - link: https://fubereats-backend-production.up.railway.app/products
 - status code: 200 ok
