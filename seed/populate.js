@@ -353,9 +353,12 @@ async function insertSandwiches() {
 // ALL
 
 async function getAllProducts() {
+  // TODO : change fetch route to deployed link
   let response = await axios(`http://localhost:3003/allProducts`);
   let allProductData = response.data;
   console.log(allProductData);
+  // TODO : check mapping...
+  // DO I REALLY NEED TO DO THIS ? OR CAN I JUST ASSIGN allProductData to a allProductsCat ? 
   let structuredAllProducts = allProductData.map(
     ({ bbq, burgers, desserts, drinks, pizzas, sandwiches }) => {
       return {
@@ -390,10 +393,12 @@ async function writeAllProductData() {
 }
 
 async function insertAllProducts() {
+  // TODO: INSERT ALL PRODUCTS TO JSON file
   try {
     await getAllProducts();
     // console.log(allProductsCat);
     // await db.dropDatabase();
+    // TODO: CREATE AllProducts collection.
     // await AllProducts.create(allProductsCat);
   } catch (err) {
     console.log(err);

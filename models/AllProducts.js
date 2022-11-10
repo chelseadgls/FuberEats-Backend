@@ -2,6 +2,7 @@ import mongoose, { mongo, Mongoose, Schema } from "mongoose";
 
 const Schema = mongoose.Schema;
 
+// TODO : MAKE SURE SCHEMA MATCHES allProductsCat in populate.js
 let AllProducts = new Schema([
   {
     bbq: [
